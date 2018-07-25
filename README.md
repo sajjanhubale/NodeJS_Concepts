@@ -356,7 +356,7 @@ printResults();
   Thus, we have seen, how we can deal with the problem of callback hell in Node.js. 
   There are a few more ways to solve the problem like using generators, modularization etc.
   But we feel that async-await and promises are the two de-facto solutions for dealing with callback hell, 
-  with async preferred more over promises.
+  with async-await preferred more over promises.
 
     
  
