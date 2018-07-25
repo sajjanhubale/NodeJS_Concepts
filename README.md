@@ -1,9 +1,110 @@
 
- ### Solution for callback hell using promises 
+
+### Blocking and non-blocking calls in Node.js
+
+You know that Node.js is based on an event-driven non-blocking I/O model. You may be wondering what does it mean for something to be blocking or something not to be blocking. In fact, there are both types of operations available in Node.js.
+
+Performing a blocking system call causes the process to enter the blocked state. Control is let back to the process only after the I/O event that is being waited upon occurs.
+
+The most common task that any developer would do is File I/O, this being a very fundamental process :
+
+Open a File.
+
+Read it's contents and print.
+
+Do something else.
+
+Let's see how this can be done with blocking and non-blocking code in node.js!
+
+#### Blocking
+
+const fs = require('fs');
+data = fs.readFileSync('file.js'); // blocks here until file is read
+console.log(data.toString());
+console.log("Done");
+
+It's a blocking code i.e until the read operation is completed, the next lines of code is not executed.
+
+#### Non-Blocking
+
+const fs = require('fs');
+fs.readFile('file.js', (err, data) => {
+  if (err) throw err;
+  else  
+  {
+    data1=data
+    console.log(data1.toString());
+  }
+});
+console.log("Done");
+
+In this Non-blocking example the program does not wait for file reading and proceeds to print "Done" and at the same time, the program without blocking continues reading the file and we now have a callback function. Certainly the callback can't execute until the file read is done.
+
+
+### What is callbacks?
+If you've had any experience with JavaScript before, there's a good chance you've seen callbacks already. The basic idea is that if we have to do something which could take a long time, let's say we're trying to read a large file, we don't want our node.js server waiting around for the file to be read when it could be dealing with other incoming requests. So to deal with this we tell Node.js to do what it has to do in the background and to call a function when it's finished. This way Node.js can carry on dealing with other requests while it's reading the file, making our code non-blocking. When we have multiple things going on at the same time, like we have in our example, we can also call this code asynchronous. 
+
+
+#### Without callback 
+```
+let out =2;
+
+setTimeout(function () {
+  out= 10;
+}, 1000);
+
+let result = out +12;
+
+console.log(result);
+
+```
+
+#### With normal function
+```
+  let out = 2;
+
+  function getResult()
+  {
+    setTimeout(function () {
+      return 10;
+    }, 1000);
+  }
+  let result = getResult();
+  let result = result +12;
+  console.log(result)
+```
+
+#### With using callback
+```
+let out =2;
+
+function getRes(callback)
+{
+  setTimeout(function () {
+    out= 10;
+    callback(out);
+  }, 1000);
+  
+}
+
+getRes(function(out){
+
+  let result = out +12;
+  console.log(result)
+  
+})
+
+```
+### Conclusion
+Whenever you have a process that could take a long time to execute, you should always ensure that you're dealing with it in a non-blocking way. When implemented right, good use of callbacks and asynchronous code can provide huge improvements to the speed and scalability of your code.
+
+
+### What is callback hell?
   Asynchronous JavaScript, or JavaScript that uses callbacks, is hard to get right intuitively. 
-  The cause of callback hell is when people try to write JavaScript in a way where execution happens visually from top to bottom. 
+  The cause of callback hell is when people try to write JavaScript in a way where execution happens visually from top to   bottom. 
   Lots of people make this mistake!
   A lot of code ends up looking like this:
+  
  ###### Nested callback -> Callback hell
 ```
 function getRes1(out,callback)
@@ -60,6 +161,8 @@ getRes(out,function(out){
 })
 
 ```
+
+
 
  ### How do I fix callback hell?
   You only need to follow three rules:
