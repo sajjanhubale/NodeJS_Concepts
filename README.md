@@ -63,13 +63,13 @@ getRes(out,function(out){
 
  ### How do I fix callback hell?
   You only need to follow three rules:
- * 1. Keep your code shallow
- * 2. Modularize
- * 3. Handle every single error
+  1. Keep your code shallow
+  2. Modularize
+  3. Handle every single error
  
  ### How to apply these three rules?
- * 1. Using Promises -> Below is the example of Promises
- * 2. Using Async.js
+  1. Using Promises -> Below is the example of Promises
+  2. Using Async.js
  
 ```
 function getResult1(out){
