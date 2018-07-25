@@ -26,7 +26,7 @@ console.log("Done");
 It's a blocking code i.e until the read operation is completed, the next lines of code is not executed.
 
 #### Non-Blocking
-
+```
 const fs = require('fs');
 fs.readFile('file.js', (err, data) => {
   if (err) throw err;
@@ -37,7 +37,7 @@ fs.readFile('file.js', (err, data) => {
   }
 });
 console.log("Done");
-
+```
 In this Non-blocking example the program does not wait for file reading and proceeds to print "Done" and at the same time, the program without blocking continues reading the file and we now have a callback function. Certainly the callback can't execute until the file read is done.
 
 
@@ -269,11 +269,13 @@ getResult1(out)
 
 ```
 
-### Conclusion :
-    Thus, we have seen, how we can deal with the problem of callback hell in Node.js. 
-    There are a few more ways to solve the problem like using generators, modularization etc.
-    But we feel that async and promises are the two de-facto solutions for dealing with callback hell, 
-    with async preferred more over promises.
+### Conclusion 
+  Thus, we have seen, how we can deal with the problem of callback hell in Node.js. 
+  There are a few more ways to solve the problem like using generators, modularization etc.
+  But we feel that async and promises are the two de-facto solutions for dealing with callback hell, 
+  with async preferred more over promises.
+
+    
  
 
 
