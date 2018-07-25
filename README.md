@@ -171,9 +171,12 @@ getRes(out,function(out){
   3. Handle every single error
  
  ### How to apply these three rules?
-  1. Using Promises -> Below is the example of Promises
-  2. Using Async.js
- 
+  ##### 1. Using Promises 
+  The core idea behind promises is that a promise represents the result of an asynchronous operation. A promise is in one of     three different states:
+  * pending - The initial state of a promise.
+  * fulfilled - The state of a promise representing a successful operation.
+  * rejected - The state of a promise representing a failed operation.
+  
 ```
 function getResult1(out){
     return new Promise(function(resolve,reject){
@@ -269,11 +272,91 @@ getResult1(out)
 
 ```
 
+ ##### 2. Using Async and Await
+ 
+It is actually built on top of promises. It cannot be used with plain callbacks or node callbacks and new way to write asynchronous code.  
+It makes asynchronous code look and behave a little more like synchronous code. This is where all its power lies.
+ 
+ ```
+ 
+function getResult1(out){
+    return new Promise(function(resolve,reject){
+        try {
+            setTimeout(function () {
+                let result = out + 12;
+                 resolve(result);
+            }, 1000);
+        } catch (error) {
+            reject(error);
+        }  
+  })
+}
+
+
+function getResult2(out){
+    return new Promise(function(resolve,reject){
+        try {
+            setTimeout(function () {
+                let result = out + 12;
+              resolve(result);
+            }, 1000);
+        } catch (error) {
+            reject(error);
+        }  
+  })
+}
+
+function getResult3(out){
+    return new Promise(function(resolve,reject){
+        try {
+            setTimeout(function () {
+                let result = out + 12;
+              resolve(result);
+            }, 1000);
+        } catch (error) {
+            reject(error);
+        }  
+  })
+}
+
+function getResult4(out){
+    return new Promise(function(resolve,reject){
+        try {
+            setTimeout(function () {
+                let result = out + 12;
+              resolve(result);
+            }, 1000);
+        } catch (error) {
+            reject(error);
+        }  
+  })
+}
+
+
+async function printResults(){
+    let out=2;
+    try {
+         out = await getResult1(out);
+         console.log(out);
+         out = await getResult2(out);
+         console.log(out);
+         out = await getResult3(out);
+         console.log(out);
+         out = await getResult4(out);
+
+    } catch (error) {
+     console.log(error);   
+    }
+}
+
+printResults();
+```
+
 ### Conclusion 
   Thus, we have seen, how we can deal with the problem of callback hell in Node.js. 
   There are a few more ways to solve the problem like using generators, modularization etc.
-  But we feel that async and promises are the two de-facto solutions for dealing with callback hell, 
-  with async preferred more over promises.
+  But we feel that async-await and promises are the two de-facto solutions for dealing with callback hell, 
+  with async-await preferred more over promises.
 
     
  
