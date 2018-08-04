@@ -17,12 +17,12 @@ Do something else.
 Let's see how this can be done with blocking and non-blocking code in node.js!
 
 #### Blocking
-
+```
 const fs = require('fs');
 data = fs.readFileSync('file.js'); // blocks here until file is read
 console.log(data.toString());
 console.log("Done");
-
+```
 It's a blocking code i.e until the read operation is completed, the next lines of code is not executed.
 
 #### Non-Blocking
