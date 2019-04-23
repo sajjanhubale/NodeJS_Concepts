@@ -147,14 +147,11 @@ function getRes4(out,callback)
 
 let out =2;
 
-getRes(out,function(out){
-    console.log("result1",out);
-    getRes(out,function(out){
-        console.log("result2",out);
+getRes1(out,function(out){
+    getRes2(out,function(out){
         getRes3(out,function(out){
-            console.log("result3",out);
             getRes4(out,function(out){
-                console.log("result4",out);
+                console.log("Final Result",out);
             })
         })
     })
@@ -235,37 +232,13 @@ let out=2;
 
 getResult1(out)
 .then(function(out){
-    return new Promise(function(resolve,reject){
-        console.log("result1",out);
-        getResult2(out)
-        .then(function(out){
-        resolve(out);
-        }).catch(function(err){
-        reject(err)
-    })
- })
+    return getResult2(out)
 }).then(function(out){
-    return new Promise(function(resolve,reject){
-        console.log("result2",out);
-        getResult3(out)
-        .then(function(out){
-           resolve(out);
-        }).catch(function(err){
-           reject(err)
-        })
-     })
+    return getResult3(out)
 }).then(function(out){
-    return new Promise(function(resolve,reject){
-        console.log("result3",out);
-        getResult4(out)
-        .then(function(out){
-           resolve(out);
-        }).catch(function(err){
-           reject(err)
-        })
-     })
+    return getResult4(out)
 }).then(function(out){
-    console.log("result4",out);
+    console.log("Final Result",out);
 }).catch(function(out){
     console.log(err);
 })
@@ -337,13 +310,10 @@ async function printResults(){
     let out=2;
     try {
          out = await getResult1(out);
-         console.log(out);
          out = await getResult2(out);
-         console.log(out);
          out = await getResult3(out);
-         console.log(out);
          out = await getResult4(out);
-
+         console.log("Final Result);
     } catch (error) {
      console.log(error);   
     }
